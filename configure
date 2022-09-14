@@ -151,7 +151,7 @@ iface ap0 inet static
 EOF #got rid of anythign to do with wlan0 as we use network manager
 
 # Populate `/bin/start_wifi.sh`
-sudo bash -c 'cat > /bin/rpi-wifi.sh' << EOF
+sudo bash -c 'cat > /sbin/rpi-wifi.sh' << EOF
 echo 'Starting Wifi AP and client...'
 sleep 30
 sudo ifdown --force ap0
@@ -160,7 +160,7 @@ $([ "${NO_INTERNET-}" != "true" ] && echo "sudo sysctl -w net.ipv4.ip_forward=1"
 $([ "${NO_INTERNET-}" != "true" ] && echo "sudo iptables -t nat -A POSTROUTING -s ${AP_IP_BEGIN}.0/24 ! -d ${AP_IP_BEGIN}.0/24 -j MASQUERADE")
 $([ "${NO_INTERNET-}" != "true" ] && echo "sudo systemctl restart dnsmasq")
 EOF
-sudo chmod +x /bin/rpi-wifi.sh
+sudo chmod +x /sbin/rpi-wifi.sh
 
 # Configure cron job
 # sudo bash -c 'cat > /etc/systemd/system/rpi-wifi.service' << EOF
@@ -178,7 +178,7 @@ sudo chmod +x /bin/rpi-wifi.sh
 # EOF
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
-crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
+crontab -l | { cat; echo "@reboot /sbin/rpi-wifi.sh"; } | crontab -
 
 # Finish
 echo "Wifi configuration is finished! Please reboot your Banana Pi to apply changes..."
