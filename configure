@@ -152,6 +152,7 @@ iface ap0 inet static
     address ${AP_IP}
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
+
 EOF 
 
 
