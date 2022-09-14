@@ -48,11 +48,11 @@ case $key in
     shift
     shift
     ;;
-    # -i|--ip)
-    # ARG_AP_IP="$2"
-    # shift
-    # shift
-    # ;;
+    -i|--ip)
+    ARG_AP_IP="$2"
+    shift
+    shift
+    ;;
     -h|--help)
     usage
     shift
