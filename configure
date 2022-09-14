@@ -84,7 +84,7 @@ sudo apt -y install dnsmasq hostapd cron #dhcpcd not needed as we use normal net
 sudo bash -c 'cat > /etc/udev/rules.d/70-persistent-net.rules' << EOF
 SUBSYSTEM=="ieee80211", ACTION=="add|change", ATTR{macaddress}=="${MAC_ADDRESS}", KERNEL=="phy0", \
   RUN+="/sbin/iw phy phy0 interface add ap0 type __ap", \
-  RUN+="/bin/ip link set ap0 address ${MAC_ADDRESS}
+  RUN+="/bin/ip link set ap0 address ${MAC_ADDRESS}"
 EOF
 
 # Populate `/etc/dnsmasq.conf`
@@ -122,6 +122,8 @@ sudo bash -c 'cat > /etc/default/hostapd' << EOF
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 EOF
 
+
+
 # # Populate `/etc/wpa_supplicant/wpa_supplicant.conf`
 # sudo bash -c 'cat > /etc/wpa_supplicant/wpa_supplicant.conf' << EOF
 # country=US
@@ -134,6 +136,8 @@ EOF
 #     id_str="AP1"
 # }
 # EOF
+
+
 
 # Populate `/etc/network/interfaces`
 sudo bash -c 'cat > /etc/network/interfaces' << EOF
@@ -149,7 +153,8 @@ iface ap0 inet static
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
 EOF 
-# # got rid of anythign to do with wlan0 as we use network manager
+
+
 
 # Populate `/etc/rpi-wifi.sh`
 sudo bash -c 'cat > /etc/rpi-wifi.sh' << EOF
