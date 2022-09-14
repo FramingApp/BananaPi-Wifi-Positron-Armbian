@@ -5,6 +5,6 @@
 
 ## Usage
 ```
-curl https://raw.githubusercontent.com/lukicdarkoo/rpi-wifi/master/configure | bash -s -- -a MyAP myappass -c WifiSSID wifipass
+curl https://raw.githubusercontent.com/FramingApp/BananaPi-Wifi-Positron-Armbian/master/configure | bash -s -- -a PositronV3 positron
 
 ```
