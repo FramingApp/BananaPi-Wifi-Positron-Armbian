@@ -152,6 +152,7 @@ iface ap0 inet static
     address ${AP_IP}
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
+
 EOF 
 
 
@@ -182,7 +183,7 @@ sudo chmod +x /etc/rpi-wifi.sh
 # EOF
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
-crontab -e | { cat; echo "@reboot /etc/rpi-wifi.sh"; } | crontab -
+crontab -l | { cat; echo "@reboot /etc/rpi-wifi.sh"; } | crontab -
 
 # Finish
 echo "Wifi configuration is finished! Please reboot your Banana Pi to apply changes..."
