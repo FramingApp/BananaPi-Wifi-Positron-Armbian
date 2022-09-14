@@ -149,14 +149,17 @@ iface ap0 inet static
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
 EOF 
-# got rid of anythign to do with wlan0 as we use network manager
+# # got rid of anythign to do with wlan0 as we use network manager
 
-# Populate `/bin/start_wifi.sh`
+# Populate `/etc/rpi-wifi.sh`
 sudo bash -c 'cat > /etc/rpi-wifi.sh' << EOF
 echo 'Starting Wifi AP and client...'
 sleep 30
 sudo ifdown --force ap0
 sudo ifup ap0
+$([ "${NO_INTERNET-}" != "true" ] && echo "sudo sysctl -w net.ipv4.ip_forward=1")
+$([ "${NO_INTERNET-}" != "true" ] && echo "sudo iptables -t nat -A POSTROUTING -s ${AP_IP_BEGIN}.0/24 ! -d ${AP_IP_BEGIN}.0/24 -j MASQUERADE")
+$([ "${NO_INTERNET-}" != "true" ] && echo "sudo systemctl restart dnsmasq")
 EOF
 
 sudo chmod +x /etc/rpi-wifi.sh
