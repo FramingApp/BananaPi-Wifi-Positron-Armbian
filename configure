@@ -140,11 +140,12 @@ EOF
 
 
 # Populate `/etc/network/interfaces`
-sudo bash -c 'cat > /etc/network/interfaces' << EOF
+sudo bash -c 'cat > /etc/network/interfaces' <<- EOF
 source-directory /etc/network/interfaces.d
 
 auto lo
 auto ap0
+iface lo inet loopback
 
 allow-hotplug ap0
 iface ap0 inet static
@@ -152,7 +153,6 @@ iface ap0 inet static
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
 
-iface lo inet loopback
 EOF
 
 
