@@ -145,7 +145,6 @@ source-directory /etc/network/interfaces.d
 
 auto lo
 auto ap0
-iface lo inet loopback
 
 allow-hotplug ap0
 iface ap0 inet static
@@ -153,7 +152,8 @@ iface ap0 inet static
     netmask 255.255.255.0
     hostapd /etc/hostapd/hostapd.conf
 
-EOF 
+iface lo inet loopback
+EOF
 
 
 
