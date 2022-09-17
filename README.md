@@ -1,4 +1,4 @@
-# Simultaneous AP and Managed Mode Wifi on Raspberry Pi
+# Simultaneous AP and Managed Mode Wifi on **Banana Pi on Armbian**
 
 ###### Special thanks to: https://albeec13.github.io/2017/09/26/raspberry-pi-zero-w-simultaneous-ap-and-managed-mode-wifi/
 
